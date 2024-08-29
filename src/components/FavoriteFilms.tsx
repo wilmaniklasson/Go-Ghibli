@@ -1,4 +1,5 @@
 import { Film } from '../data/interface';
+import { useState } from 'react';
 
 interface FavoriteFilmsProps {
   favoriteFilms: Film[];
@@ -7,6 +8,15 @@ interface FavoriteFilmsProps {
 }
 
 function FavoriteFilms({ favoriteFilms, toggleFavoriteFilm }: FavoriteFilmsProps) {
+  const [seenFilms, setSeenFilms] = useState<{ [key: string]: boolean }>({});
+
+  const toggleHaveSeenFilm = (filmId: string) => {
+    setSeenFilms(prevState => ({
+      ...prevState,
+      [filmId]: !prevState[filmId]
+    }));
+  }
+
   return (
     <>
       <h2>Favorite Films</h2>
@@ -16,12 +26,16 @@ function FavoriteFilms({ favoriteFilms, toggleFavoriteFilm }: FavoriteFilmsProps
         <div>
           {favoriteFilms.map((film) => {
             const isFavorite = favoriteFilms.some(favFilm => favFilm.id === film.id);
+            const hasSeen = seenFilms[film.id] || false;
 
             return (
               <div className='film-list' key={film.id}>
                 <img src={film.image} alt={film.title} />
                 <div className='film-info'>
-                  <div className='favorite-film-btn-container'>
+                  <div className='btn-container'>
+                    <button className='have-seen-btn' onClick={() => toggleHaveSeenFilm(film.id)}>
+                      {hasSeen ? 'Have seen' : 'Have not seen'}
+                    </button>
                     <button className='favorite-film-btn' onClick={() => toggleFavoriteFilm(film)}>
                       {isFavorite ? '❤️' : '🩶'}
                     </button>
@@ -41,4 +55,3 @@ function FavoriteFilms({ favoriteFilms, toggleFavoriteFilm }: FavoriteFilmsProps
 }
 
 export default FavoriteFilms;
-
