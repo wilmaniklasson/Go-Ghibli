@@ -3,9 +3,10 @@ import { Film } from '../data/interface';
 interface FilmListProps {
   films: Film[];
   loading: boolean;
+  addFavoriteFilm: (film: Film) => void;
 }
 
-function FilmList({ films, loading }: FilmListProps) {
+function FilmList({ films, loading, addFavoriteFilm }: FilmListProps) {
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -18,7 +19,7 @@ function FilmList({ films, loading }: FilmListProps) {
             <img src={film.image} alt={film.title} />
           
           <div className='film-info'>
-            <button>Add to favorites</button>
+          <button onClick={() => addFavoriteFilm(film)}>Add to favorites</button>
             <h2>{film.title}</h2>
             <p>Director: {film.director}</p>
             <p>Year of Release: {film.release_date}</p>

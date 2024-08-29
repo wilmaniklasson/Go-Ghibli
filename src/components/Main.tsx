@@ -7,8 +7,9 @@ import FavoriteFilms from './FavoriteFilms';
 function Main() {
   const [films, setFilms] = useState<Film[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [buttonClick, setButtonClick] = useState<boolean>(false);
+  const [showFavorites, setShowFavorites] = useState<boolean>(false);
   const [searchFilter, setSearchFilter] = useState<string>('');
+  const [favoriteFilms, setFavoriteFilms] = useState<Film[]>([]);
 
   const fetchData = async () => {
     try {
@@ -31,7 +32,15 @@ function Main() {
   );
 
   
-// TODO: skapa en funktion som lägg till filmen i favoriter
+ const addFavoriteFilm = (film: Film) => {
+  if (!favoriteFilms.some(favFilm => favFilm.id === film.id)) {
+    setFavoriteFilms([...favoriteFilms, film]);
+  }
+};
+
+const toggleView = () => {
+  setShowFavorites(!showFavorites); 
+};
   
   return (
     <div className="Main">
@@ -41,12 +50,22 @@ function Main() {
       </header>
      
       <main>
-        {buttonClick ? (
-          <FavoriteFilms onShowAllFilms={() => setButtonClick(false)} />
+        <button onClick={toggleView}>
+          {showFavorites ? 'Show all films' : 'Show favorite films'}
+        </button>
+        
+        {showFavorites ? (
+          <FavoriteFilms 
+            favoriteFilms={favoriteFilms} 
+            onShowAllFilms={toggleView} 
+          />
         ) : (
           <section>
-            <button onClick={() => setButtonClick(true)}>Show favorite films</button>
-            <FilmList films={filteredFilms} loading={loading} />
+            <FilmList 
+              films={filteredFilms} 
+              loading={loading} 
+              addFavoriteFilm={addFavoriteFilm}
+            />
           </section>
         )}
       </main>
