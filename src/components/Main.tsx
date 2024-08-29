@@ -32,25 +32,28 @@ function Main() {
   );
 
   
- const addFavoriteFilm = (film: Film) => {
-  if (!favoriteFilms.some(favFilm => favFilm.id === film.id)) {
-    setFavoriteFilms([...favoriteFilms, film]);
-  }
-};
+  const toggleFavoriteFilm = (film: Film) => {
+    if (favoriteFilms.some(favFilm => favFilm.id === film.id)) {
+      setFavoriteFilms(favoriteFilms.filter(favFilm => favFilm.id !== film.id));
+    } else {
+      setFavoriteFilms([...favoriteFilms, film]);
+    }
+  };
+  
 
 const toggleView = () => {
   setShowFavorites(!showFavorites); 
 };
   
   return (
-    <div className="Main">
+    <div className="page">
         <header>
             <h1>Studio Ghibli Films</h1>
                 <input className="search" type="text" placeholder="Search..." onChange={(event) => setSearchFilter(event.target.value)}value={searchFilter}/>          
       </header>
      
       <main>
-        <button onClick={toggleView}>
+        <button className='toggle-view-btn' onClick={toggleView}>
           {showFavorites ? 'Show all films' : 'Show favorite films'}
         </button>
         
@@ -58,13 +61,15 @@ const toggleView = () => {
           <FavoriteFilms 
             favoriteFilms={favoriteFilms} 
             onShowAllFilms={toggleView} 
+            toggleFavoriteFilm={toggleFavoriteFilm}
           />
         ) : (
           <section>
             <FilmList 
               films={filteredFilms} 
               loading={loading} 
-              addFavoriteFilm={addFavoriteFilm}
+              favoriteFilms={favoriteFilms}
+              toggleFavoriteFilm={toggleFavoriteFilm}
             />
           </section>
         )}

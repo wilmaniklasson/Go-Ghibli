@@ -3,8 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+
+  
   
 
   font-synthesis: none;
@@ -12,6 +12,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: rgb(245, 243, 240); 
+}
+
 
 a {
   font-weight: 500;
@@ -27,32 +34,11 @@ a:hover {
 
 h1 {
   font-size: 3.2em;
-  line-height: 1.1;
+  margin: 0;
 }
 
-button {
-  font-family: inherit;
-  font-size: 1em;
-  font-weight: 500;
-  color: rgb(42, 41, 41);
-  background-color: #646cff;
-  border: 2px solid #646cff;
-  border-radius: 0.5em;
-  padding: 0.5em 1em;
-  cursor: pointer;
-  box-shadow: inset -3px -3px 0px #0000004c;
-  transition: background-color 300ms, color 300ms;
-  margin-top: 1em;
- 
-}
 
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+
 
 @media (prefers-color-scheme: light) {
   :root {
