@@ -1,15 +1,16 @@
+/* Globala stilar för applikationen */
 .App, .page {
   text-align: center;
 }
 
-main{
+/* Main section stilar */
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
-
+/* Film list container */
 .film-list {
   list-style: none;
   margin: 2rem;
@@ -18,22 +19,19 @@ main{
   background-color: rgb(243, 225, 203);
   border-radius: 0 5px 5px 0; /* Rundar bara de högra hörnen */
   max-width: 900px;
-  
- 
-
-  img{
-    width: 300px;
-    border-radius: 5px 0 0 5px; /* Rundar bara de vänstra hörnen */
-  
-  }
-  .film-info{
-    margin: 0 2rem 0 2rem;
-  }
 }
 
+.film-list img {
+  width: 300px;
+  border-radius: 5px 0 0 5px; /* Rundar bara de vänstra hörnen */
+}
 
+.film-info {
+  margin: 0 2rem;
+}
 
-.search{
+/* Sökfält */
+.search {
   margin: 2rem;
   padding: 0.5rem;
   font-size: 1rem;
@@ -42,20 +40,23 @@ main{
   width: 50%;
 }
 
-.favorite-film-btn-container{
+/* Favorite film button container */
+.favorite-film-btn-container {
   display: flex;
-  justify-content: flex-end;;
+  justify-content: flex-end;
   margin: 1rem;
 }
 
-.btn-container{
+/* Button container */
+.btn-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin:   0.5em 1em;
+  margin: 0.5em 1em;
 }
 
-.have-seen-btn{
+/* "Have seen" button styles */
+.have-seen-btn {
   font-family: inherit;
   font-size: 1em;
   font-weight: 500;
@@ -65,53 +66,51 @@ main{
   padding: 0.5em 1em;
   cursor: pointer;
   box-shadow: inset -3px -3px 0px #0000004c;
-  transition: background-color 300ms, color 300ms;
+  transition: background-color 300ms, color 300ms, transform 0.3s ease;
   height: 40px;
-  transition: transform 0.3s ease; 
-  
 }
-
 
 .have-seen-btn:hover {
   transform: scale(1.05);
 }
 
-.move-btn-container{
+/* Move button container */
+.move-btn-container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
-.move-btn{
+
+/* Move button styles */
+.move-btn {
   font-size: 1em;
   background-color: none;
   border: none;
   padding: 0.25em 0.5em;
   border-radius: 0.5em;
   cursor: pointer;
-  margin:0.2em;
-  transition: transform 0.3s ease; 
-  
+  margin: 0.2em;
+  transition: transform 0.3s ease;
 }
+
 .move-btn:hover {
   transform: scale(1.1);
 }
 
-
 .move-btn:disabled {
   pointer-events: none; 
-  opacity: 1.1; 
+  opacity: 0.5; 
   cursor: not-allowed;
 }
 
-
-
-.favorite-film-btn{
+/* Favorite film button styles */
+.favorite-film-btn {
   border: none;
   cursor: pointer;
   padding: 0.25em 0.5em;
   height: 40px;
   border-radius: 0.5em;
-  transition: transform 0.3s ease; 
+  transition: transform 0.3s ease;
   font-size: 1em;
 }
 
@@ -119,9 +118,8 @@ main{
   transform: scale(1.1);
 }
 
-
-
-.toggle-view-btn{
+/* Toggle view button styles */
+.toggle-view-btn {
   font-family: inherit;
   font-size: 1em;
   font-weight: 500;
@@ -134,7 +132,6 @@ main{
   box-shadow: inset -3px -3px 0px #0000004c;
   transition: background-color 300ms, color 300ms;
   margin-top: 1em;
- 
 }
 
 .toggle-view-btn:hover {
@@ -142,25 +139,19 @@ main{
   color: #ffffff;
 }
 
+/* Responsiva stilar */
 @media screen and (max-width: 700px) {
   .film-list {
     flex-direction: column;
     max-width: 400px;
     border-radius: 0 0 5px 5px; /* Rundar bara bottenhörnen */
-
-    img{
-    width: 400px;
-    border-radius: 5px 5px 0 0; /* Rundar bara tophörnen */
-    }
-  
   }
 
-
-  
-  
-  
+  .film-list img {
+    width: 400px;
+    border-radius: 5px 5px 0 0; /* Rundar bara tophörnen */
+  }
 }
-
 
 @media screen and (max-width: 470px) {
   .film-list {
@@ -168,23 +159,14 @@ main{
     max-width: 300px;
     margin: 0;
     margin-bottom: 1em;
-
-    img{
-      width: 300px;
-    }
-  
   }
-.toggle-view-btn{
-  margin-top: 0em;
-  margin-bottom: 0.5em;
+
+  .film-list img {
+    width: 300px;
+  }
+
+  .toggle-view-btn {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+  }
 }
-
-
-
-  
-  
-  
-  
-}
-
-
